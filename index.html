@@ -11,65 +11,6 @@
 
     </canvas>
 
-    <script>
-        var canvas = document.getElementById("canvas");
-        var ctx = canvas.getContext("2d");
-        var balls = [];
-        var maxBalls = 10; // Максимальна кількість кульок
-        var ballSpeed = 2; // Початкова швидкість руху кульок
-        var mouseX = 0; // Координати миші
-        var mouseY = 0;
-
-        function onCanvasClick(e) {
-            if (balls.length < maxBalls) {
-                var x = e.clientX;
-                var y = e.clientY;
-                var radius = Math.random() * 30 + 10; // Випадковий радіус кульки
-                var dx = (Math.random() - 0.5) * ballSpeed * 2; // Випадкова швидкість руху по осі X
-                var dy = (Math.random() - 0.5) * ballSpeed * 2; // Випадкова швидкість руху по осі Y
-                var color = getRandomColor(); // Випадковий колір кульки
-
-                balls.push({ x: x, y: y, radius: radius, dx: dx, dy: dy, color: color });
-
-                moveBalls();
-            }
-        }
-
-        function moveBalls() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            balls.forEach(function (ball) {
-                ctx.fillStyle = ball.color;
-                ctx.beginPath();
-                ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-                ctx.fill();
-
-                ball.x += ball.dx;
-                ball.y += ball.dy;
-
-                if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
-                    ball.dx = -ball.dx;
-                }
-                if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-                    ball.dy = -ball.dy;
-                }
-            });
-
-            requestAnimationFrame(moveBalls);
-        }
-
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        function onMouseMove(e) {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
