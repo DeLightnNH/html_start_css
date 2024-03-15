@@ -39,6 +39,7 @@ function getDistanceHint(distance) {
 const width = 450;
 const height = 400;
 let click = 0; // для підрахунку кількості кліків
+const maxMoves = 10
 
 // Випадкове розміщення скарбу
 const target = {
@@ -50,5 +51,14 @@ const target = {
 const mapElement = document.getElementById("map");
 mapElement.addEventListener("click", (event) => {
     click++; // click = click + 1
-    console.log(click);
+    const answer = getDistanceHint(getDistance(event, target))
+    document.getElementById("distance").innerHTML = `Результат: ${getDistanceHint(getDistance(event, target))}`
+    document.getElementById("counter").innerHTML = `Кількість ходів: ${click}`;
+    if (answer === "Пече!") {
+        alert("gg")
+    }
+
+    if (click === maxMoves ) {
+        alert("ezezezezez looseeer")
+    }
 });
